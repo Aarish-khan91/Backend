@@ -15,13 +15,12 @@ ENV MYSQL_DB=sbdb
 ADD target/Courses-Details-0.0.1-SNAPSHOT.jar /Courses-Details-0.0.1-SNAPSHOT.jar
 
 # Install MySQL client
-RUN apk add --no-cache mysql-client
 
 # Copy MySQL connector JAR file
-COPY mysql-connector-java-8.0.28.jar /usr/local/lib/
+COPY mysql-connector-java-8.3.0.jar lib/mysql-connector-j.8.3.0.jar
 
 # Set the classpath for the MySQL connector
-ENV CLASSPATH=/usr/local/lib/mysql-connector-java-8.0.28.jar
+ENV CLASSPATH=lib/mysql-connector-j.8.3.0
 
 # Command to run the JAR file
-ENTRYPOINT ["java", "-jar", "/Courses-Details-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "Courses-Details-0.0.1-SNAPSHOT.jar"]

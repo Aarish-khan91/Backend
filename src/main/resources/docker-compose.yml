@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  backend:
+    image: aarishkhan9146/course-details-backend
+    container_name: backend
+    build:
+      context: ./backend
+    ports:
+      - "8080:8080"
+    networks:
+      - app-network
+
+  frontend:
+    image: aarishkhan9146/course-details-frontend
+    container_name: frontend
+    build:
+      context: ./frontend
+    ports:
+      - "3000:80"
+    networks:
+      - app-network
+
+  database:
+    image: mysql:8.0
+    container_name: database
+    environment:
+      MYSQL_ROOT_PASSWORD: manager
+      MYSQL_DATABASE: sbdb
+      MYSQL_USER: root
+      MYSQL_PASSWORD: manager
+    ports:
+      - "3306:3306"
+    networks:
+      - app-network
+
+networks:
+  app-network:
